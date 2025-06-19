@@ -1,0 +1,27 @@
+{
+  "app_title": "DIY Challenges",
+  "start": "Start",
+  "login": "Login",
+
+
+  "email": "Email",
+  "password": "Password",
+  "register": "Register",
+  "required_field": "This field is required",
+  "password_too_short": "Password must be at least 6 characters",
+  "name": "Name",
+  "challenge_details": "Challenge Details",
+  "category": "Category",
+  "rating": "Rating",
+  "upload_result": "Upload Result",
+  "my_challenges": "My Challenges",
+  "submit_result": "Submit Result",
+  "thank_you": "Thank you for participating!",
+  "settings": "Settings",
+  "choose_language": "Choose Language"
+
+
+
+
+
+}

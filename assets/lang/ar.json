@@ -1,0 +1,27 @@
+{
+  "app_title": "تحديات بنشغلك",
+  "start": "ابدأ",
+  "login": "تسجيل الدخول",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "register": "إنشاء حساب",
+  "required_field": "هذا الحقل مطلوب",
+  "password_too_short": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+  "name": "الاسم",
+  "challenge_details": "تفاصيل التحدي",
+  "category": "الفئة",
+  "rating": "التقييم",
+  "upload_result": "رفع النتيجة",
+  "my_challenges": "تحدياتي",
+  "submit_result": "إرسال النتيجة",
+  "thank_you": "شكرًا لمشاركتك!",
+  "settings": "الإعدادات",
+  "choose_language": "اختر اللغة"
+
+
+
+
+
+
+}
+
