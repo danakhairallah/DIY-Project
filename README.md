@@ -1,16 +1,43 @@
-# diy_challenge_app
+# DIY Challenge App 
 
-A new Flutter project.
+A mobile application built with Flutter as part of a collaborative team project.  
+The app provides a platform for showcasing and completing DIY (Do It Yourself) challenges,
+with full support for bilingual content (Arabic & English),
+responsive design, and a clean architecture using MVC and Provider.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+##  Flutter Team Members
 
-A few resources to get you started if this is your first Flutter project:
+- Hourieh Jebawi 
+- Dana Khairallah
+- Bara'ah Ajamyia
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+##  Implemented Screens
+
+-  Splash Screen
+-  Login Page
+-  Register Page
+-  Home Page
+-  Challenge Details Page
+- Upload Result Page
+-  My Challenges Page
+-  Rating Page
+- Setting Page
+
+
+
+---
+
+##  Packages Used
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+   cupertino_icons: ^1.0.8
+  provider: ^6.1.5
+  flutter_localization: ^0.3.2
+  http: ^1.4.0
