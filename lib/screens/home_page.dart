@@ -1,12 +1,9 @@
-import 'package:diy_challenge_app/screens/challenge_details_page.dart';
 import 'package:diy_challenge_app/screens/my_challenges_page.dart';
 import 'package:diy_challenge_app/screens/rating_page.dart';
 import 'package:diy_challenge_app/screens/settings_page.dart';
 import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/widget/challenges.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../providers/challenge_provider.dart';
 import '../utils/app_localizations.dart';
 
 class HomePage extends StatelessWidget {
