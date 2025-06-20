@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
               }
               return supportedLocales.first;
             },
-            initialRoute: '/SplashScreen',
+          
             routes: {
               '/login': (_) => const LoginPage(),
               '/register': (_) => const RegisterPage(),
