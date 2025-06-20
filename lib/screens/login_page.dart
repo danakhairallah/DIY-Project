@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 import 'home_page.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -26,19 +27,23 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
-    //final isRtl = Directionality.of(context) == TextDirection.rtl;
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.translate("login"),style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Color(0xFF1B1C3),),),),
+      appBar: AppBar(title: Text(loc.translate("login"), style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black,),),),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
+        child:
+           Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(labelText: loc.translate("email"),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                 labelStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Color(0xFF3C3F58))),
                 validator: (value) =>
                 value!.isEmpty ? loc.translate("required_field") : null,
@@ -47,6 +52,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(labelText: loc.translate("password"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                     labelStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Color(0xFF3C3F58)),),
                 obscureText: true,
                 validator: (value) =>
@@ -66,17 +74,25 @@ class _LoginPageState extends State<LoginPage> {
 
               ),
               const SizedBox(height: 10),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/register');
+              //*********************************
+              Row(
+                children: [
+                  Text("DO not have an account!",style: TextStyle(fontSize: 14,color:Color(0xFF3C3F58) ),),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
 
-                },
-                style: TextButton.styleFrom(
-                  side: BorderSide.none,
-                  foregroundColor: Colors.blue,
-                ),
-                child: Text(loc.translate("register"),
-                  style: TextStyle(fontSize: 14,color: Color(0xFF3579F6),),),
+
+
+                    },
+                    style: TextButton.styleFrom(
+                      side: BorderSide.none,
+                      foregroundColor: Colors.blue,
+                    ),
+                    child: Text(loc.translate("register"),
+                      style: TextStyle(fontSize: 14,color: Color(0xFF3579F6),),),
+                  ),
+                ],
               )
             ],
           ),
