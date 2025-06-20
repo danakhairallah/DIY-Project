@@ -1,3 +1,4 @@
+import 'package:diy_challenge_app/utils/responsive_helper.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -28,11 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
+          
             Image.asset(
-              'assets/images/DiyLogo.jpg',
-              width: 150,
-              height: 150,
+              'assets/images/logo3.png',
+              width: ResponsiveHelper.isMobile(context)?250:ResponsiveHelper.isTablet(context)?300:350,
+              height:ResponsiveHelper.isMobile(context)?250:ResponsiveHelper.isTablet(context)?300:350 ,
             ),
 
           ],
