@@ -1,0 +1,90 @@
+{
+  "app_title": "DIY Challenges",
+  "start": "Start",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "register": "Register",
+  "required_field": "This field is required",
+  "password_too_short": "Password must be at least 6 characters",
+  "name": "Name",
+  "challenge_details": "Challenge Details",
+  "category": "Category",
+  "rating": "Rating",
+  "upload_result": "Upload Result",
+  "my_challenges": "My Challenges",
+  "submit_result": "Submit Result",
+  "thank_you": "Thank you for participating!",
+  "settings": "Settings",
+  "choose_language": "Choose Language",
+  "all_challenges": "All Challenges",
+  "categories": "Categories",
+  "top_rated": "Top Rated",
+  "suggested": "Suggested",
+  "diy_app_menu": "DIY App Menu",
+  "language": "Language",
+  "dark_mode": "Dark Mode",
+  "notifications": "Notifications",
+  "privacy_policy": "Privacy Policy",
+  "about": "About",
+  "share": "Share",
+  "logout": "Logout",
+  "track_progress": "Track Progress",
+  "close": "Close",
+  "take_the_challenge": "Take the challenge",
+  "quote_1": "Every day is a challenge, and every challenge is a step toward a stronger you.",
+  "quote_2": "Small steps every day lead to big changes.",
+  "quote_3": "Your future self will thank you for starting today.",
+
+
+  "challenge_drink_water_title": "Drink Water",
+  "challenge_drink_water_desc": "Make sure to drink 8 glasses (2 liters) of water today to stay hydrated and healthy.",
+
+  "challenge_english_word_title": "English Word",
+  "challenge_english_word_desc": "Learn a new English word with its meaning, and use it in a complete sentence to reinforce it.",
+
+  "challenge_family_time_title": "Family Time",
+  "challenge_family_time_desc": "Spend at least one hour with your family today, without devices. Enjoy a shared activity or deep conversation.",
+
+  "challenge_meditation_title": "Meditation",
+  "challenge_meditation_desc": "Take 10 minutes today to sit in a quiet space, breathe deeply, and focus on the present moment.",
+
+  "challenge_walking_title": "Walking",
+  "challenge_walking_desc": "Go for a 30-minute walk outdoors. Choose a peaceful area and enjoy the movement and fresh air.",
+
+  "challenge_read_book_title": "Read Book",
+  "challenge_read_book_desc": "Read 10 pages from a book you enjoy or can learn from. Note down one idea that inspired you.",
+
+  "challenge_without_internet_title": "Without Internet",
+  "challenge_without_internet_desc": "Disconnect from the internet for 2 hours today. Use that time to do something meaningful offline.",
+
+  "challenge_no_junk_food_title": "No Junk Food",
+  "challenge_no_junk_food_desc": "Avoid all junk food and sugary drinks today. Choose healthy alternatives and nourish your body.",
+
+  "challenge_waking_up_early_title": "Waking Up Early",
+  "challenge_waking_up_early_desc": "Wake up one hour earlier than usual and spend your morning doing something productive like reading or exercising.",
+
+  "challenge_cooking_title": "Cooking",
+  "challenge_cooking_desc": "Cook a healthy meal by yourself today. Try a new recipe and share it with someone you care about.",
+
+  "challenge_read_quran_title": "Reading the Qur’an",
+  "challenge_read_quran_desc": "Read at least one page of the Qur’an today and reflect on its meaning. Make it part of your daily routine.",
+
+  "challenge_new_skill_title": "New Skill",
+  "challenge_new_skill_desc": "Choose a new skill and learn the basics from a short video or article. Take your first step and share your progress.",
+
+  "challenge_push_ups_title": "Push-Ups",
+  "challenge_push_ups_desc": "Do 3 sets of push-ups (10 reps each) with short breaks in between. Improve your strength step by step.",
+
+  "challenge_meaningful_conversations_title": "Meaningful Conversations",
+  "challenge_meaningful_conversations_desc": "Start a meaningful conversation with a friend or family member today. Talk about something that truly matters.",
+
+  "category_physical_health": "Physical Health",
+  "category_personal_growth": "Personal Growth",
+  "category_relationships": "Relationships",
+  "category_mindfulness": "Mindfulness",
+  "category_digital_detox": "Digital Detox",
+  "category_spiritual": "Spiritual",
+
+  "choose_language_subtitle": "Select your preferred language for the app"
+}
