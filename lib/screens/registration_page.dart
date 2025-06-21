@@ -210,17 +210,28 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            loc.translate("login"),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFF3579F6),
-                                fontWeight: FontWeight.bold),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              loc.translate('Already have an account?'),
+                              style:TextStyle(
+                                  fontSize: 14, color: Colors.black54
+                              ) ,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                loc.translate("login"),
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFF3579F6),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
