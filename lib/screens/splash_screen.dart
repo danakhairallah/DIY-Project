@@ -32,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
           
             Image.asset(
               'assets/images/logo (2).png',
-              width: ResponsiveHelper.isMobile(context)?250:ResponsiveHelper.isTablet(context)?300:350,
-              height:ResponsiveHelper.isMobile(context)?250:ResponsiveHelper.isTablet(context)?300:350 ,
+              width: ResponsiveHelper.isMobile(context)?230:ResponsiveHelper.isTablet(context)?280:350,
+              height:ResponsiveHelper.isMobile(context)?230:ResponsiveHelper.isTablet(context)?280:350 ,
             ),
 
           ],
