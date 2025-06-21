@@ -1,5 +1,6 @@
 import 'package:diy_challenge_app/screens/rating_page.dart';
 import 'package:diy_challenge_app/screens/settings_page.dart';
+import 'package:diy_challenge_app/screens/suggested_page.dart';
 import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/widget/challenges.dart';
 import 'package:diy_challenge_app/utils/dark_theme_page.dart';
@@ -115,7 +116,7 @@ class HomePage extends StatelessWidget {
             const ChallengeTabContent(),
             const CategoriesTab(),
             const UploadResultPage(),
-            const RatingPage(),
+            const SuggestedPage(),
           ],
         ),
       ),
