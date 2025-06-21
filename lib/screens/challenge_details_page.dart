@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
 import '../providers/challenge_provider.dart';
 import '../utils/app_localizations.dart';
 
@@ -13,29 +15,87 @@ class ChallengeDetails extends StatefulWidget {
 }
 
 class _ChallengeDetailsState extends State<ChallengeDetails> {
-  final List<String> _quotes = [
-    "Every day is a challenge, and every challenge is a step toward a stronger you.",
-    "Push yourself, because no one else is going to do it for you.",
-    "Small steps every day lead to big changes.",
-    "You’re stronger than you think. Prove it to yourself.",
-    "Your future self will thank you for starting today.",
-  ];
-
   int _currentIndex = 0;
   Timer? _timer;
+  List<DateTime> _completedDays = [];
 
   @override
   void initState() {
     super.initState();
     _startQuoteTimer();
+    _loadCompletedDays();
   }
 
   void _startQuoteTimer() {
     _timer = Timer.periodic(const Duration(seconds: 7), (timer) {
       setState(() {
-        _currentIndex = (_currentIndex + 1) % _quotes.length;
+        _currentIndex = (_currentIndex + 1) % 3;
       });
     });
+  }
+
+  Future<void> _loadCompletedDays() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stringDates = prefs.getStringList('completedDays_${widget.challengeId}') ?? [];
+    setState(() {
+      _completedDays = stringDates.map((s) => DateTime.parse(s)).toList();
+    });
+  }
+
+  Future<void> _saveCompletedDays() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stringDates = _completedDays.map((d) => d.toIso8601String()).toList();
+    await prefs.setStringList('completedDays_${widget.challengeId}', stringDates);
+  }
+
+  void _showCalendarDialog(AppLocalizations loc) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(loc.translate("track_progress")),
+          content: SizedBox(
+            height: 350,
+            width: double.maxFinite,
+            child: TableCalendar(
+              firstDay: DateTime.utc(2024, 1, 1),
+              lastDay: DateTime.utc(2030, 12, 31),
+              focusedDay: DateTime.now(),
+              selectedDayPredicate: (day) {
+                return _completedDays.any((d) => isSameDay(d, day));
+              },
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  final exists = _completedDays.any((d) => isSameDay(d, selectedDay));
+                  if (exists) {
+                    _completedDays.removeWhere((d) => isSameDay(d, selectedDay));
+                  } else {
+                    _completedDays.add(selectedDay);
+                  }
+                });
+                _saveCompletedDays();
+              },
+              calendarStyle: CalendarStyle(
+                todayDecoration: BoxDecoration(
+                  color: Colors.orangeAccent,
+                  shape: BoxShape.circle,
+                ),
+                selectedDecoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(loc.translate("close")),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -50,6 +110,12 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
     final challenge = Provider.of<ChallengeProvider>(context, listen: false)
         .findById(widget.challengeId);
 
+    final quotes = [
+      loc.translate("quote_1"),
+      loc.translate("quote_2"),
+      loc.translate("quote_3"),
+    ];
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -60,11 +126,11 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 94),
                 child: Text(
-                  _quotes[_currentIndex],
+                  quotes[_currentIndex],
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFFC62828), // زهري غامق
+                    color: Color(0xFF2083B8),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -98,28 +164,25 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        challenge.title,
+                        loc.translate(challenge.title),
                         style: Theme.of(context).textTheme.titleLarge,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        challenge.description,
+                        loc.translate(challenge.description),
                         textAlign: TextAlign.start,
                         style: const TextStyle(fontSize: 14),
                       ),
                       const SizedBox(height: 16),
                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "${loc.translate("category")}: ${challenge.category}",
-                          style: const TextStyle(color: Colors.grey),
+                        alignment: AlignmentDirectional.centerStart,                        child: Text(
+                          "${loc.translate("category")}: ${loc.translate(challenge.category)}",                          style: const TextStyle(color: Colors.grey),
                         ),
                       ),
                       const SizedBox(height: 8),
                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
+                        alignment: AlignmentDirectional.centerStart,                        child: Text(
                           "${loc.translate("rating")}: ${challenge.rating} ⭐",
                           style: const TextStyle(color: Colors.grey),
                         ),
@@ -129,7 +192,7 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
                         onPressed: () {
                           Navigator.pushNamed(context, '/upload');
                         },
-                        child: Text(loc.translate("Take the challenge")),
+                        child: Text(loc.translate("take_the_challenge")),
                       ),
                     ],
                   ),
@@ -138,6 +201,10 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showCalendarDialog(loc),
+        child: const Icon(Icons.calendar_today),
       ),
     );
   }
