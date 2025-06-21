@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 import 'home_page.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,6 +13,9 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final secureStorage=FlutterSecureStorage();
+  bool rememberMe=false;
+
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
@@ -22,12 +25,27 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
   }
+  void initstate(){
+    super.initState();
+    loadRememberMe();
+  }
+  void loadRememberMe()async{
+    String? value= await secureStorage.read(key: 'remember_me');
+    setState(() {
+      if (value == 'true') {
+        rememberMe = true;
+      } else {
+        rememberMe = false;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final size = MediaQuery.of(context).size;
+    
 
     return Scaffold(
       body: Container(
@@ -153,7 +171,29 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                                value: rememberMe, 
+                                activeColor: Color(0xFF3579F6),
+                                onChanged: (value)async{
+                               setState(() {
+                                 rememberMe = value!;
+                               });
+                               await secureStorage.write(key: 'remember_me', value: rememberMe.toString(),);
+                              
+                            }
+                            ),
+                            Text(
+                              loc.translate(" rememberMe ?"),
+                              style: TextStyle(fontSize: 14, color: Color(0xFF3579F6),fontWeight: FontWeight.bold),
+                            ),
+
+                          ],
+                          
+                        ),
                       ],
                     ),
                   ),
