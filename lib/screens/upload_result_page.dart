@@ -17,7 +17,11 @@ class _UploadResultPageState extends State<UploadResultPage> {
   String? _completionStatus;
   DateTime? _selectedDate;
 
-  final List<String> _challenges = ['Challenge 1', 'Challenge 2', 'Challenge 3']; // استبدليهم لاحقًا حسب اللغة
+  final List<String> _challenges = [
+    'Challenge 1',
+    'Challenge 2',
+    'Challenge 3',
+  ];
 
   Future<void> _pickMedia() async {
     final picker = ImagePicker();
@@ -52,54 +56,99 @@ class _UploadResultPageState extends State<UploadResultPage> {
     final loc = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.translate("Upload Your Result"))),
+      appBar: AppBar(title: Text(loc.translate("upload_your_result"))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text(loc.translate("Photo/Video")),
+            Text(loc.translate("photo_video")),
             ElevatedButton.icon(
               onPressed: _pickMedia,
               icon: Icon(Icons.upload_file),
-              label: Text(loc.translate("Choose file")),
+              label: Text(loc.translate("choose_file")),
             ),
             if (_selectedMedia != null)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Image.file(_selectedMedia!, height: 150),
               ),
-
             const SizedBox(height: 16),
-            Text(loc.translate("Add Description")),
-            TextField(
-              controller: _descriptionController,
-              maxLines: 3,
-              decoration: InputDecoration(
-                hintText: loc.translate(""),
-                border: OutlineInputBorder(),
+
+            Container(
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(loc.translate("add_description")),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _descriptionController,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      //  hintText: loc.translate("description_hint"),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Container(
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(loc.translate("select_challenge")),
+                  const SizedBox(height: 8),
+                  DropdownButtonFormField<String>(
+                    value: _selectedChallenge,
+                    items:
+                        _challenges.map((challenge) {
+                          return DropdownMenuItem(
+                            value: challenge,
+                            child: Text(challenge),
+                          );
+                        }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedChallenge = value;
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
               ),
             ),
 
             const SizedBox(height: 16),
-            Text(loc.translate("Select Challenge")),
-            DropdownButtonFormField<String>(
-              value: _selectedChallenge,
-              items: _challenges.map((challenge) {
-                return DropdownMenuItem(
-                  value: challenge,
-                  child: Text(challenge),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedChallenge = value;
-                });
-              },
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
-
-            const SizedBox(height: 16),
-            Text(loc.translate("Did Complete")),
+            Text(loc.translate("did_complete")),
             Row(
               children: [
                 Expanded(
@@ -134,13 +183,13 @@ class _UploadResultPageState extends State<UploadResultPage> {
               children: [
                 Text(
                   _selectedDate == null
-                      ? loc.translate("no date selected")
+                      ? loc.translate("no_date_selected")
                       : '${_selectedDate!.toLocal()}'.split(' ')[0],
                 ),
                 const Spacer(),
                 ElevatedButton(
                   onPressed: _pickDate,
-                  child: Text(loc.translate("Choose Date")),
+                  child: Text(loc.translate("choose_date")),
                 ),
               ],
             ),
@@ -148,10 +197,10 @@ class _UploadResultPageState extends State<UploadResultPage> {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: _submitResult,
-              child: Text(loc.translate("Submit Result")),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 50),
               ),
+              child: Text(loc.translate("submit_result")),
             ),
           ],
         ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 
 class RatingPage extends StatefulWidget {
@@ -17,12 +17,13 @@ class _RatingPageState extends State<RatingPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-      //  title: Text(AppLocalizations.of(context)!.translate("Thank You!")),
         content: Text(AppLocalizations.of(context)!.translate("Thank You!")),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(AppLocalizations.of(context)!.translate("close")),
+              onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          },
+             child: Text(AppLocalizations.of(context)!.translate("close")),
           )
         ],
       ),
@@ -63,10 +64,10 @@ class _RatingPageState extends State<RatingPage> {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: _submitRating,
-              child: Text(loc.translate("Submit")),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 50),
               ),
+              child: Text(loc.translate("Submit")),
             )
           ],
         ),

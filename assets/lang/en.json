@@ -102,14 +102,37 @@
   "category_digital_detox": "Digital Detox",
   "category_spiritual": "Spiritual",
 
-  "choose_language_subtitle": "Select your preferred language for the app"
-  
-  
+  "choose_language_subtitle": "Select your preferred language for the app",
 
 
+  "create_account": "Create your account",
+
+  "Thank You!": "Thank you!",
+  "close": "Close",
+  "Submit": "Submit",
 
 
+  "upload_your_result": "Upload Your Result",
+  "photo_video": "Photo/Video",
+  "choose_file": "Choose file",
+  "add_description": "Add Description",
+  "description_hint": "Write a brief description here",
+  "select_challenge": "Select Challenge",
+  "did_complete": "Did you complete it?",
+  "yes": "Yes",
+  "no": "No",
+  "no_date_selected": "No date selected",
+  "choose_date": "Choose Date",
+  "submit_result": "Submit Result"
 
 
 
 }
+
+
+
+
+
+
+
+

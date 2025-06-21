@@ -99,14 +99,36 @@
   "category_digital_detox": "التحرر الرقمي",
   "category_spiritual": "روحي",
 
-  "choose_language_subtitle": "اختر لغتك المفضلة للتطبيق"
+  "choose_language_subtitle": "اختر لغتك المفضلة للتطبيق",
 
+  "create_account": "قم بإنشاء حساب لك",
 
+  "Thank You!": "شكرًا لك!",
+  "close": "إغلاق",
+  "Submit": "إرسال",
 
-
-
-
+  
+  "upload_your_result": "ارفع نتيجتك",
+  "photo_video": "صورة / فيديو",
+  "choose_file": "اختر ملفًا",
+  "add_description": "أضف وصفًا",
+  "description_hint": "اكتب وصفًا مختصرًا هنا",
+  "select_challenge": "اختر التحدي",
+  "did_complete": "هل أنهيت التحدي؟",
+  "yes": "نعم",
+  "no": "لا",
+  "no_date_selected": "لم يتم اختيار تاريخ",
+  "choose_date": "اختر تاريخًا"
 
 
 }
+
+
+
+
+
+
+
+
+
 
