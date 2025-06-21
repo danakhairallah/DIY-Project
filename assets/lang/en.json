@@ -2,8 +2,6 @@
   "app_title": "DIY Challenges",
   "start": "Start",
   "login": "Login",
-
-
   "email": "Email",
   "password": "Password",
   "register": "Register",
@@ -123,9 +121,14 @@
   "no": "No",
   "no_date_selected": "No date selected",
   "choose_date": "Choose Date",
-  "submit_result": "Submit Result"
-
-
+  "submit_result": "Submit Result",
+  
+  "suggested_challenges": "Suggested Challenges",
+  "explore_more": "Explore More",
+  "mini_lamp_title": "Create a Mini Lamp",
+  "mini_lamp_description": "Use simple materials to make a decorative lamp.",
+  "plant_pot_title": "Plant Pot",
+  "plant_pot_description": "Reuse bottles to grow your plant."
 
 }
 

@@ -112,13 +112,24 @@
   "photo_video": "صورة / فيديو",
   "choose_file": "اختر ملفًا",
   "add_description": "أضف وصفًا",
-  "description_hint": "اكتب وصفًا مختصرًا هنا",
   "select_challenge": "اختر التحدي",
   "did_complete": "هل أنهيت التحدي؟",
   "yes": "نعم",
   "no": "لا",
   "no_date_selected": "لم يتم اختيار تاريخ",
-  "choose_date": "اختر تاريخًا"
+  "choose_date": "اختر تاريخًا",
+
+  
+  "suggested_title": "مقترحات لك",
+  "description_hint": "وصف مختصر",
+  "explore_more": "استكشف المزيد من التحديات",
+
+  "mini_lamp_title": "اصنع مصباحًا صغيرًا",
+  "mini_lamp_description": "استخدم مواد بسيطة لصنع مصباح ديكوري.",
+  "plant_pot_title": " زرع يدوي الصنع",
+  "plant_pot_description": "أعد استخدام الزجاجات لزراعة نبتتك."
+
+
 
 
 }
