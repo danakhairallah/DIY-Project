@@ -12,32 +12,68 @@ class LanguagePage extends StatelessWidget {
     final localeProvider = Provider.of<LocaleProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.translate("Language"))),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ListTile(
-              title: const Text("English"),
-              leading: Radio<String>(
-                value: 'en',
-                groupValue: localeProvider.locale.languageCode,
-                onChanged: (value) {
-                  localeProvider.setLocale(const Locale('en'));
-                },
+      appBar: AppBar(
+        title: Text(loc.translate("language")),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          width: 350,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 40),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 12,
+                offset: const Offset(0, 5),
               ),
-            ),
-            ListTile(
-              title: const Text("العربية"),
-              leading: Radio<String>(
-                value: 'ar',
-                groupValue: localeProvider.locale.languageCode,
-                onChanged: (value) {
-                  localeProvider.setLocale(const Locale('ar'));
-                },
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                loc.translate("choose_language"),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              Text(
+                loc.translate("choose_language_subtitle"),
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              ListTile(
+                title: const Text("English"),
+                leading: Radio<String>(
+                  value: 'en',
+                  groupValue: localeProvider.locale.languageCode,
+                  onChanged: (value) {
+                    if (value != null) {
+                      localeProvider.setLocale(const Locale('en'));
+                    }
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text("Arabic"),
+                leading: Radio<String>(
+                  value: 'ar',
+                  groupValue: localeProvider.locale.languageCode,
+                  onChanged: (value) {
+                    if (value != null) {
+                      localeProvider.setLocale(const Locale('ar'));
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
