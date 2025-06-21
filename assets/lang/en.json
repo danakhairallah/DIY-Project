@@ -29,7 +29,8 @@
   "invalid_age": "Please enter a valid age",
   "welcome_back": "Welcome back!",
   "no_account": "Don't have an account?",
-  "create_account": "Create your account"
+  "create_account": "Create your account",
+   "rememberMe": "rememberMe"
 
 
 
