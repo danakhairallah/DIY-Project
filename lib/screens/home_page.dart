@@ -1,10 +1,12 @@
-import 'package:diy_challenge_app/screens/my_challenges_page.dart';
+import 'package:diy_challenge_app/dark_theme.dart';
 import 'package:diy_challenge_app/screens/rating_page.dart';
-import 'package:diy_challenge_app/screens/settings_page.dart';
 import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/widget/challenges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../utils/app_localizations.dart';
+import 'categories_tab.dart';
+import 'language_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,20 +19,23 @@ class HomePage extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-         bottom: TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(icon: const Icon(Icons.explore), text: "All Challenges"),
+              Tab(
+                icon: const Icon(Icons.explore),
+                text: loc.translate("all_challenges"),
+              ),
               Tab(
                 icon: const Icon(Icons.category_outlined),
-                text: loc.translate("Categories"),
+                text: loc.translate("categories"),
               ),
               Tab(
                 icon: const Icon(Icons.stars),
-                text: loc.translate("Top Rated"),
+                text: loc.translate("top_rated"),
               ),
               Tab(
                 icon: const Icon(Icons.lightbulb),
-                text: loc.translate("Suggested"),
+                text: loc.translate("suggested"),
               ),
             ],
           ),
@@ -39,20 +44,24 @@ class HomePage extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 decoration: BoxDecoration(color: Colors.deepPurpleAccent),
                 child: Text(
-                  'DIY App Menu',
+                  loc.translate("diy_app_menu"),
                   style: TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
               ListTile(
+                leading: const Icon(Icons.playlist_add_check_outlined),
+                title: Text(loc.translate("my_challenges")),
+              ),
+              ListTile(
                 leading: const Icon(Icons.settings),
-                title: Text(loc.translate("Settings")),
+                title: Text(loc.translate("settings")),
               ),
               ListTile(
                 leading: const Icon(Icons.language),
-                title: Text(loc.translate("Language")),
+                title: Text(loc.translate("language")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -61,28 +70,41 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
+
               ListTile(
                 leading: const Icon(Icons.dark_mode),
-                title: Text(loc.translate("Dark Mode")),
+                title: Text(loc.translate("dark_mode")),
+                trailing: Consumer<DarkTheme>(
+                  builder: (context, themeProvider, _) {
+                    final isDark = themeProvider.themeMode == ThemeMode.dark;
+                    return Switch(
+                      value: isDark,
+                      onChanged: (value) {
+                        themeProvider.toggleTheme(value);
+                      },
+                    );
+                  },
+                ),
               ),
               ListTile(
                 leading: const Icon(Icons.notifications),
-                title: Text(loc.translate("Notifications")),
+                title: Text(loc.translate("notifications")),
               ),
               ListTile(
                 leading: const Icon(Icons.privacy_tip_outlined),
-                title: Text(loc.translate("Privacy Policy")),
+                title: Text(loc.translate("privacy_policy")),
               ),
               ListTile(
                 leading: const Icon(Icons.help_outline),
-                title: Text(loc.translate("About")),
-              ),  ListTile(
+                title: Text(loc.translate("about")),
+              ),
+              ListTile(
                 leading: const Icon(Icons.share),
-                title: Text(loc.translate("Share")),
+                title: Text(loc.translate("share")),
               ),
               ListTile(
                 leading: const Icon(Icons.logout),
-                title: Text(loc.translate("Logout")),
+                title: Text(loc.translate("logout")),
               ),
             ],
           ),
@@ -91,7 +113,7 @@ class HomePage extends StatelessWidget {
         body: TabBarView(
           children: [
             const ChallengeTabContent(),
-            const MyChallengesPage(),
+            const CategoriesTab(),
             const UploadResultPage(),
             const RatingPage(),
           ],
