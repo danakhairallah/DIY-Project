@@ -1,12 +1,12 @@
-import 'package:diy_challenge_app/dark_theme.dart';
 import 'package:diy_challenge_app/screens/rating_page.dart';
+import 'package:diy_challenge_app/screens/settings_page.dart';
 import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/widget/challenges.dart';
+import 'package:diy_challenge_app/utils/dark_theme_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utils/app_localizations.dart';
 import 'categories_tab.dart';
-import 'language_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
