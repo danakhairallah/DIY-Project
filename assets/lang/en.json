@@ -18,7 +18,20 @@
   "submit_result": "Submit Result",
   "thank_you": "Thank you for participating!",
   "settings": "Settings",
-  "choose_language": "Choose Language"
+  "choose_language": "Choose Language",
+  "invalid_email": "Please enter a valid email address",
+  "weak_password": "Password must be at least 8 characters and include uppercase, lowercase, number, and symbol",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "other": "Other",
+  "age": "Age",
+  "invalid_age": "Please enter a valid age",
+  "welcome_back": "Welcome back!",
+  "no_account": "Don't have an account?",
+  "create_account": "Create your account"
+
+
 
 
 
