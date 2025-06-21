@@ -28,8 +28,79 @@
   "welcome_back": "مرحبًا بعودتك!",
   "no_account": "لا تملك حسابًا؟",
   "create_account": "قم بإنشاء حساب لك",
-   "rememberMe": "تذكرني",
-    "Do you have an account?":"هل تمتلك حساب بالفعل؟"
+  "rememberMe": "تذكرني",
+  "Do you have an account?":"هل تمتلك حساب بالفعل؟",
+  
+  "all_challenges": "جميع التحديات",
+  "categories": "التصنيفات",
+  "top_rated": "الأعلى تقييمًا",
+  "suggested": "مقترحة",
+  "diy_app_menu": "قائمة تطبيق DIY",
+  "language": "اللغة",
+  "dark_mode": "الوضع الداكن",
+  "notifications": "الإشعارات",
+  "privacy_policy": "سياسة الخصوصية",
+  "about": "حول التطبيق",
+  "share": "مشاركة",
+  "logout": "تسجيل الخروج",
+  "track_progress": "تتبع التقدم",
+  "close": "إغلاق",
+  "take_the_challenge": "ابدأ التحدي",
+  "quote_1": "كل يوم هو تحدٍ، وكل تحدٍ هو خطوة نحو نسخة أقوى من نفسك.",
+  "quote_2": "خطوات صغيرة كل يوم تؤدي إلى تغييرات كبيرة.",
+  "quote_3": "نفسك في المستقبل ستشكرك لأنك بدأتِ اليوم.",
+
+  "challenge_drink_water_title": "اشرب الماء",
+  "challenge_drink_water_desc": "تأكد من شرب 8 أكواب (2 لتر) من الماء اليوم للبقاء بصحة جيدة.",
+
+  "challenge_english_word_title": "كلمة إنجليزية",
+  "challenge_english_word_desc": "تعلم كلمة إنجليزية جديدة مع معناها، واستخدمها في جملة كاملة لتعزيزها.",
+
+  "challenge_family_time_title": "وقت العائلة",
+  "challenge_family_time_desc": "اقضِ ساعة واحدة على الأقل مع عائلتك اليوم، بدون أجهزة. استمتع بنشاط مشترك أو محادثة عميقة.",
+
+  "challenge_meditation_title": "تأمل",
+  "challenge_meditation_desc": "خذ 10 دقائق اليوم للجلوس في مكان هادئ، تنفس بعمق، وركز على اللحظة الحالية.",
+
+  "challenge_walking_title": "المشي",
+  "challenge_walking_desc": "اذهب في نزهة لمدة 30 دقيقة في الهواء الطلق. اختر مكانًا هادئًا واستمتع بالحركة والهواء النقي.",
+
+  "challenge_read_book_title": "قراءة كتاب",
+  "challenge_read_book_desc": "اقرأ 10 صفحات من كتاب تستمتع به أو تتعلم منه. دوّن فكرة ألهمتك.",
+
+  "challenge_without_internet_title": "بدون إنترنت",
+  "challenge_without_internet_desc": "افصل الإنترنت لمدة ساعتين اليوم. استغل الوقت لفعل شيء ذي معنى دون اتصال.",
+
+  "challenge_no_junk_food_title": "بدون أكل غير صحي",
+  "challenge_no_junk_food_desc": "تجنب جميع الأطعمة غير الصحية والمشروبات السكرية اليوم. اختر البدائل الصحية.",
+
+  "challenge_waking_up_early_title": "استيقظ مبكرًا",
+  "challenge_waking_up_early_desc": "استيقظ قبل ساعة من وقتك المعتاد وقم بشيء منتج في الصباح مثل القراءة أو التمرين.",
+
+  "challenge_cooking_title": "الطبخ",
+  "challenge_cooking_desc": "اطبخ وجبة صحية بنفسك اليوم. جرّب وصفة جديدة وشاركها مع من تحب.",
+
+  "challenge_read_quran_title": "قراءة القرآن",
+  "challenge_read_quran_desc": "اقرأ صفحة واحدة على الأقل من القرآن اليوم وتأمل في معناها. اجعلها عادة يومية.",
+
+  "challenge_new_skill_title": "مهارة جديدة",
+  "challenge_new_skill_desc": "اختر مهارة جديدة وتعلم الأساسيات من فيديو قصير أو مقال. ابدأ أول خطوة وشارك تقدمك.",
+
+  "challenge_push_ups_title": "تمارين الضغط",
+  "challenge_push_ups_desc": "قم بـ 3 مجموعات من تمارين الضغط (10 مرات لكل مجموعة) مع استراحات قصيرة. حسن لياقتك تدريجياً.",
+
+  "challenge_meaningful_conversations_title": "محادثات عميقة",
+  "challenge_meaningful_conversations_desc": "ابدأ محادثة عميقة مع صديق أو فرد من العائلة اليوم. تحدث عن شيء مهم حقًا.",
+
+  "category_physical_health": "الصحة الجسدية",
+  "category_personal_growth": "النمو الشخصي",
+  "category_relationships": "العلاقات",
+  "category_mindfulness": "الوعي الذاتي",
+  "category_digital_detox": "التحرر الرقمي",
+  "category_spiritual": "روحي",
+
+  "choose_language_subtitle": "اختر لغتك المفضلة للتطبيق"
+
 
 
 
