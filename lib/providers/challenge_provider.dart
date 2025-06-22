@@ -2,6 +2,22 @@ import 'package:flutter/material.dart';
 import '../models/challenge.dart';
 
 class ChallengeProvider with ChangeNotifier {
+  final List<Challenge> _myChallenges = [];
+
+  List<Challenge> get myChallenges => [..._myChallenges];
+
+  void addToMyChallenges(Challenge challenge) {
+    if (!_myChallenges.any((c) => c.id == challenge.id)) {
+      _myChallenges.add(challenge);
+      notifyListeners();
+    }
+  }
+
+  void removeFromMyChallenges(String id) {
+    _myChallenges.removeWhere((c) => c.id == id);
+    notifyListeners();
+  }
+
   final List<Challenge> _challenges = [
     Challenge(
       id: 'c1',

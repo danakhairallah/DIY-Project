@@ -29,9 +29,9 @@
   "no_account": "Don't have an account?",
   "create_account": "Create your account",
   "rememberMe": "rememberMe",
-   "Already have an account?": "Already have an account?",
+  "Already have an account?": "Already have an account?",
   
-    "all_challenges": "All Challenges",
+  "all_challenges": "All Challenges",
   "categories": "Categories",
   "top_rated": "Top Rated",
   "suggested": "Suggested",
@@ -43,7 +43,7 @@
   "about": "About",
   "share": "Share",
   "logout": "Logout",
-  "track_progress": "Track Progress",
+  "do_it_yourself": "Do it yourself",
   "close": "Close",
   "take_the_challenge": "Take the challenge",
   "quote_1": "Every day is a challenge, and every challenge is a step toward a stronger you.",
@@ -103,10 +103,8 @@
   "choose_language_subtitle": "Select your preferred language for the app",
 
 
-  "create_account": "Create your account",
 
   "Thank You!": "Thank you!",
-  "close": "Close",
   "Submit": "Submit",
 
 
@@ -121,15 +119,34 @@
   "no": "No",
   "no_date_selected": "No date selected",
   "choose_date": "Choose Date",
-  "submit_result": "Submit Result",
-  
+
   "suggested_challenges": "Suggested Challenges",
   "explore_more": "Explore More",
   "mini_lamp_title": "Create a Mini Lamp",
   "mini_lamp_description": "Use simple materials to make a decorative lamp.",
   "plant_pot_title": "Plant Pot",
-  "plant_pot_description": "Reuse bottles to grow your plant."
+  "plant_pot_description": "Reuse bottles to grow your plant.",
 
+  "arabic": "Arabic",
+  "no_challenges_yet": "No Challenges Yet",
+
+  "adding_challenge": "Adding the challenge...",
+  "challenge_added_success": "Challenge added to My Challenges!",
+  "reset": "Reset",
+  "join_challenge": "Join Challenge",
+  "challenge_photography": "Photography Challenge",
+  "challenge_photography_desc": "Capture your best moments!",
+  "challenge_cooking": "Cooking Challenge",
+  "challenge_cooking_desc": "Create and share a delicious recipe!",
+  "challenge_crafts": "Crafts Challenge",
+  "challenge_crafts_desc": "Make something creative with your hands!",
+  "challenge_fitness": "Fitness Challenge",
+  "challenge_fitness_desc": "Complete 10,000 steps daily for a week!",
+  "challenge_reading": "Reading Challenge",
+  "challenge_reading_desc": "Read one book this month and share your review.",
+  "challenge_gardening": "Gardening Challenge",
+  "challenge_gardening_desc": "Grow a plant and document its progress.",
+  "welcome": "Welcome"
 }
 
 

@@ -7,20 +7,81 @@ import '../utils/app_localizations.dart';
 class ChallengeTabContent extends StatelessWidget {
   const ChallengeTabContent({super.key});
 
+  int _getCrossAxisCount(double width) {
+    if (width >= 1200) {
+      return 4; // ديسكتوب كبير
+    } else if (width >= 800) {
+      return 3; // تابليت
+    } else {
+      return 2; // موبايل
+    }
+  }
+
+  double _getChildAspectRatio(double width) {
+    if (width >= 1200) {
+      return 1.0;
+    } else if (width >= 800) {
+      return 0.9;
+    } else {
+      return 0.83;
+    }
+  }
+
+  EdgeInsets _getPadding(double width) {
+    if (width >= 1200) {
+      return const EdgeInsets.all(40);
+    } else if (width >= 800) {
+      return const EdgeInsets.all(30);
+    } else {
+      return const EdgeInsets.all(20);
+    }
+  }
+
+  double _getImageHeight(double width) {
+    if (width >= 1200) {
+      return 140;
+    } else if (width >= 800) {
+      return 120;
+    } else {
+      return 100;
+    }
+  }
+
+  double _getFontSizeTitle(double width) {
+    if (width >= 1200) {
+      return 18;
+    } else if (width >= 800) {
+      return 17;
+    } else {
+      return 16;
+    }
+  }
+
+  double _getFontSizeRating(double width) {
+    if (width >= 1200) {
+      return 14;
+    } else if (width >= 800) {
+      return 13;
+    } else {
+      return 13;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final challenges = Provider.of<ChallengeProvider>(context).challenges;
     final loc = AppLocalizations.of(context)!;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: _getPadding(screenWidth),
       child: GridView.builder(
         itemCount: challenges.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: _getCrossAxisCount(screenWidth),
           mainAxisSpacing: 26,
           crossAxisSpacing: 22,
-          childAspectRatio: 0.83,
+          childAspectRatio: _getChildAspectRatio(screenWidth),
         ),
         itemBuilder: (ctx, i) {
           final ch = challenges[i];
@@ -47,7 +108,7 @@ class ChallengeTabContent extends StatelessWidget {
                     ),
                     child: Image.asset(
                       ch.imageUrl,
-                      height: 100,
+                      height: _getImageHeight(screenWidth),
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
@@ -62,9 +123,9 @@ class ChallengeTabContent extends StatelessWidget {
                           Text(
                             loc.translate(ch.title),
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: _getFontSizeTitle(screenWidth),
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -72,7 +133,7 @@ class ChallengeTabContent extends StatelessWidget {
                           const SizedBox(height: 8),
                           Text(
                             "${ch.rating} ⭐",
-                            style: const TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: _getFontSizeRating(screenWidth)),
                           ),
                         ],
                       ),

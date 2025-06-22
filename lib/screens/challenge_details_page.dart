@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../providers/challenge_provider.dart';
 import '../utils/app_localizations.dart';
+import '../utils/responsive_helper.dart'; // 📌 أضف هذا السطر
 
 class ChallengeDetails extends StatefulWidget {
   final String challengeId;
@@ -24,6 +25,38 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
     super.initState();
     _startQuoteTimer();
     _loadCompletedDays();
+  }
+
+  Future<void> _onTakeChallengePressed(BuildContext context) async {
+    final loc = AppLocalizations.of(context)!;
+    final provider = Provider.of<ChallengeProvider>(context, listen: false);
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        content: Row(
+          children: [
+            const CircularProgressIndicator(),
+            const SizedBox(width: 20),
+            Expanded(child: Text(loc.translate("adding_challenge"))),
+          ],
+        ),
+      ),
+    );
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    final challenge = provider.findById(widget.challengeId);
+    provider.addToMyChallenges(challenge);
+
+    Navigator.of(context).pop();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(loc.translate("challenge_added_success"))),
+    );
+
+    Navigator.pushNamed(context, '/upload');
   }
 
   void _startQuoteTimer() {
@@ -55,7 +88,12 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
         return StatefulBuilder(
           builder: (context, setStateDialog) {
             return AlertDialog(
-              title: Text(loc.translate("track_progress")),
+              title: Center(
+                child: Text(
+                  loc.translate("do_it_yourself"),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               content: SizedBox(
                 width: double.maxFinite,
                 height: 350,
@@ -140,6 +178,9 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+    final isDesktop = ResponsiveHelper.isDesktop(context);
+    final isTablet = ResponsiveHelper.isTablet(context);
+
     final challenge = Provider.of<ChallengeProvider>(context, listen: false)
         .findById(widget.challengeId);
 
@@ -149,21 +190,25 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
       loc.translate("quote_3"),
     ];
 
+    final double imageSize = isDesktop ? 240 : isTablet ? 200 : 180;
+    final double paddingValue = isDesktop ? 40 : 26;
+    final double fontSize = isDesktop ? 18 : 14;
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 24),
+          padding: EdgeInsets.symmetric(horizontal: paddingValue, vertical: 24),
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 94),
                 child: Text(
                   quotes[_currentIndex],
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontSize: isDesktop ? 20 : 16,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF2083B8),
+                    color: const Color(0xFF2083B8),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -171,7 +216,7 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
               Center(
                 child: Container(
                   width: double.infinity,
-                  constraints: const BoxConstraints(maxWidth: 400),
+                  constraints: BoxConstraints(maxWidth: isDesktop ? 600 : 400),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -190,42 +235,48 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
                           challenge.imageUrl,
-                          width: 180,
-                          height: 180,
+                          width: imageSize,
+                          height: imageSize,
                           fit: BoxFit.cover,
                         ),
                       ),
                       const SizedBox(height: 20),
                       Text(
                         loc.translate(challenge.title),
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: isDesktop ? 24 : null,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         loc.translate(challenge.description),
                         textAlign: TextAlign.start,
-                        style: const TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: fontSize),
                       ),
                       const SizedBox(height: 16),
                       Align(
-                        alignment: AlignmentDirectional.centerStart,                        child: Text(
-                          "${loc.translate("category")}: ${loc.translate(challenge.category)}",                          style: const TextStyle(color: Colors.grey),
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
+                          "${loc.translate("category")}: ${loc.translate(challenge.category)}",
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ),
                       const SizedBox(height: 8),
                       Align(
-                        alignment: AlignmentDirectional.centerStart,                        child: Text(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
                           "${loc.translate("rating")}: ${challenge.rating} ⭐",
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/upload');
-                        },
-                        child: Text(loc.translate("take_the_challenge")),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () => _onTakeChallengePressed(context),
+                          child: Text(loc.translate("take_the_challenge")),
+                        ),
                       ),
                     ],
                   ),

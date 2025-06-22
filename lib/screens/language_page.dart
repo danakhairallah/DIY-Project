@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utils/app_localizations.dart';
 import '../providers/locale_provider.dart';
+import '../utils/responsive_helper.dart';  // استيراد ResponsiveHelper
 
 class LanguagePage extends StatelessWidget {
   const LanguagePage({super.key});
@@ -11,6 +12,25 @@ class LanguagePage extends StatelessWidget {
     final loc = AppLocalizations.of(context)!;
     final localeProvider = Provider.of<LocaleProvider>(context);
 
+    final isTablet = ResponsiveHelper.isTablet(context);
+    final isDesktop = ResponsiveHelper.isDesktop(context);
+
+    // تحديد عرض الـ Container بناءً على حجم الشاشة
+    final containerWidth = isDesktop
+        ? 450.0
+        : isTablet
+        ? 380.0
+        : 320.0;
+
+    final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.bold,
+      fontSize: isDesktop ? 26 : isTablet ? 22 : 18,
+    );
+
+    final subtitleStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
+      fontSize: isDesktop ? 18 : isTablet ? 16 : 14,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(loc.translate("language")),
@@ -18,7 +38,7 @@ class LanguagePage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          width: 350,
+          width: containerWidth,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 40),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -36,15 +56,13 @@ class LanguagePage extends StatelessWidget {
             children: [
               Text(
                 loc.translate("choose_language"),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: titleStyle,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
               Text(
                 loc.translate("choose_language_subtitle"),
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: subtitleStyle,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
@@ -61,7 +79,7 @@ class LanguagePage extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text("Arabic"),
+                title: Text(loc.translate("arabic")),
                 leading: Radio<String>(
                   value: 'ar',
                   groupValue: localeProvider.locale.languageCode,

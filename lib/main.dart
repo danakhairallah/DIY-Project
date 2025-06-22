@@ -1,3 +1,4 @@
+import 'package:diy_challenge_app/screens/language_page.dart';
 import 'package:diy_challenge_app/utils/app_theme.dart';
 import 'package:diy_challenge_app/providers/challenge_provider.dart';
 import 'package:diy_challenge_app/providers/locale_provider.dart';
@@ -6,7 +7,6 @@ import 'package:diy_challenge_app/screens/login_page.dart';
 import 'package:diy_challenge_app/screens/my_challenges_page.dart';
 import 'package:diy_challenge_app/screens/rating_page.dart';
 import 'package:diy_challenge_app/screens/registration_page.dart';
-import 'package:diy_challenge_app/screens/settings_page.dart';
 import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/screens/splash_screen.dart';
 import 'package:diy_challenge_app/utils/app_localizations.dart';
@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
               '/register': (_) => const RegisterPage(),
               '/my': (_) => const MyChallengesPage(),
               '/upload': (_) => const UploadResultPage(),
+              '/my_challenges': (context) => const MyChallengesPage(),
               '/rate': (_) => const RatingPage(),
               '/splash': (_) => const SplashScreen(),
               '/setting': (_) => const LanguagePage(),

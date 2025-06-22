@@ -1,4 +1,4 @@
-# DIY Challenge App 
+# DIY Challenge App
 
 A mobile application built with Flutter as part of a collaborative team project.  
 The app provides a platform for showcasing and completing DIY (Do It Yourself) challenges,
@@ -9,7 +9,7 @@ responsive design, and a clean architecture using MVC and Provider.
 
 ##  Flutter Team Members
 
-- Hourieh Jebawi 
+- Hourieh Jebawi
 - Dana Khairallah
 - Bara'ah Ajamyia
 
@@ -25,7 +25,8 @@ responsive design, and a clean architecture using MVC and Provider.
 - Upload Result Page
 -  My Challenges Page
 -  Rating Page
-- Setting Page
+- Top Rated Page
+- Upload Result Page
 
 
 
@@ -41,3 +42,6 @@ dependencies:
   provider: ^6.1.5
   flutter_localization: ^0.3.2
   http: ^1.4.0
+  image_picker: ^1.1.2
+  flutter_secure_storage: ^9.2.4
+  table_calendar: ^3.0.9

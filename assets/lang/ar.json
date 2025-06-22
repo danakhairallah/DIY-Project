@@ -43,7 +43,7 @@
   "about": "حول التطبيق",
   "share": "مشاركة",
   "logout": "تسجيل الخروج",
-  "track_progress": "تتبع التقدم",
+  "do_it_yourself": "افعلها بنفسك",
   "close": "إغلاق",
   "take_the_challenge": "ابدأ التحدي",
   "quote_1": "كل يوم هو تحدٍ، وكل تحدٍ هو خطوة نحو نسخة أقوى من نفسك.",
@@ -101,10 +101,8 @@
 
   "choose_language_subtitle": "اختر لغتك المفضلة للتطبيق",
 
-  "create_account": "قم بإنشاء حساب لك",
 
   "Thank You!": "شكرًا لك!",
-  "close": "إغلاق",
   "Submit": "إرسال",
 
   
@@ -127,11 +125,29 @@
   "mini_lamp_title": "اصنع مصباحًا صغيرًا",
   "mini_lamp_description": "استخدم مواد بسيطة لصنع مصباح ديكوري.",
   "plant_pot_title": " زرع يدوي الصنع",
-  "plant_pot_description": "أعد استخدام الزجاجات لزراعة نبتتك."
+  "plant_pot_description": "أعد استخدام الزجاجات لزراعة نبتتك.",
 
 
+  "arabic": "العربية",
+  "no_challenges_yet": "لم تشترك بأي تحدي بعد",
 
-
+  "adding_challenge": "جاري إضافة التحدي...",
+  "challenge_added_success": "تمت إضافة التحدي إلى تحدياتي!",
+  "reset": "إعادة ضبط",
+  "join_challenge": "انضم للتحدي",
+  "challenge_photography": "تحدي التصوير",
+  "challenge_photography_desc": "التقط أفضل لحظاتك!",
+  "challenge_cooking": "تحدي الطبخ",
+  "challenge_cooking_desc": "اصنع وشارك وصفة لذيذة!",
+  "challenge_crafts": "تحدي الأشغال اليدوية",
+  "challenge_crafts_desc": "اصنع شيئًا مبدعًا بيديك!",
+  "challenge_fitness": "تحدي اللياقة",
+  "challenge_fitness_desc": "أكمِل 10,000 خطوة يوميًا لمدة أسبوع!",
+  "challenge_reading": "تحدي القراءة",
+  "challenge_reading_desc": "اقرأ كتابًا هذا الشهر وشارك مراجعتك.",
+  "challenge_gardening": "تحدي الزراعة",
+  "challenge_gardening_desc": "ازرع نباتًا ووثّق تطوّره.",
+  "welcome": "مرحباً بك"
 }
 
 
