@@ -34,23 +34,23 @@ class TopRatedPage extends StatelessWidget {
       },
       {
         'id':4,
-        'title': "Fitness Challenge",
+        'title': loc.translate("challenge_fitness"),
         'rating': 4.6,
-        'description': "Complete 10,000 steps daily for a week!",
+        'description':loc.translate("challenge_fitness_desc"),
         'image': Icons.fitness_center,
       },
       {
         'id':5,
-        'title': "Reading Challenge",
+        'title': loc.translate("challenge_reading"),
         'rating': 4.5,
-        'description': "Read one book this month and share your review.",
+        'description': loc.translate("challenge_reading_desc"),
         'image': Icons.menu_book,
       },
       {
         'id':6,
-        'title': "Gardening Challenge",
+        'title': loc.translate("challenge_gardening"),
         'rating': 4.4,
-        'description': "Grow a plant and document its progress.",
+        'description': loc.translate("challenge_gardening_desc"),
         'image': Icons.local_florist,
       },
     ];
@@ -132,7 +132,7 @@ class TopRatedPage extends StatelessWidget {
 
                               },
                               icon: const Icon(Icons.play_arrow),
-                             label:  Text(loc.translate("Join Challenge"),
+                             label:  Text(loc.translate("join_challenge"),
                                 style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
