@@ -30,6 +30,12 @@
   "create_account": "قم بإنشاء حساب لك",
   "rememberMe": "تذكرني",
  "Already have an account?":"هل تمتلك حساب بالفعل؟",
+   "challenge_photography": "تحدي التصوير",
+  "challenge_photography_desc": "التقط أفضل لحظاتك!",
+  "challenge_cooking": "تحدي الطبخ",
+  "challenge_cooking_desc": "اصنع وشارك وصفة لذيذة!",
+  "challenge_crafts": "تحدي الأشغال اليدوية",
+  "challenge_crafts_desc": "اصنع شيئًا مبدعًا بيديك!",
   
   "all_challenges": "جميع التحديات",
   "categories": "التصنيفات",
