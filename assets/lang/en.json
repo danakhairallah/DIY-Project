@@ -30,6 +30,12 @@
   "create_account": "Create your account",
   "rememberMe": "rememberMe",
    "Already have an account?": "Already have an account?",
+   "challenge_photography": "Photography Challenge",
+  "challenge_photography_desc": "Capture your best moments!",
+  "challenge_cooking": "Cooking Challenge",
+  "challenge_cooking_desc": "Create and share a delicious recipe!",
+  "challenge_crafts": "Crafts Challenge",
+  "challenge_crafts_desc": "Make something creative with your hands!",
   
     "all_challenges": "All Challenges",
   "categories": "Categories",
