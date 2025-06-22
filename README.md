@@ -25,7 +25,8 @@ responsive design, and a clean architecture using MVC and Provider.
 - Upload Result Page
 -  My Challenges Page
 -  Rating Page
-- Setting Page
+- Top Rated Page
+- Upload Result Page 
 
 
 
