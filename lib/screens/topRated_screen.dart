@@ -132,7 +132,7 @@ class TopRatedPage extends StatelessWidget {
 
                               },
                               icon: const Icon(Icons.play_arrow),
-                              label: const Text("Join Challenge",
+                             label:  Text(loc.translate("Join Challenge"),
                                 style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
