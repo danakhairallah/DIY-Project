@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
           children: [
             const ChallengeTabContent(),
             const CategoriesTab(),
-            const UploadResultPage(),
+            const TopRatedPage(),
             const SuggestedPage(),
           ],
         ),
