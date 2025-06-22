@@ -51,12 +51,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF5F8DFF), Color(0xFFA0C4FF)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+        decoration: const BoxDecoration(color: Color(0xFFB9D4F8)
         ),
         child: Center(
           child: SingleChildScrollView(
@@ -70,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color(0xFF0283D1),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -78,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   loc.translate("welcome_back"),
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.white70,
+                    color: Color(0xFF0283D1),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -133,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: ElevatedButton(
                             onPressed: _submit,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF5F8DFF),
+                              backgroundColor: const Color(0xFF07A1FF),
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -165,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                                 loc.translate("register"),
                                 style: const TextStyle(
                                   fontSize: 14,
-                                  color: Color(0xFF3579F6),
+                                  color: Color(0xFF07A1FF),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -177,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Checkbox(
                                 value: rememberMe, 
-                                activeColor: Color(0xFF3579F6),
+                                activeColor: Color(0xFF07A1FF),
                                 onChanged: (value)async{
                                setState(() {
                                  rememberMe = value!;
@@ -188,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             Text(
                               loc.translate(" rememberMe ?"),
-                              style: TextStyle(fontSize: 14, color: Color(0xFF3579F6),fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 14, color: Color(0xFF07A1FF),fontWeight: FontWeight.bold),
                             ),
 
                           ],

@@ -33,6 +33,14 @@ class HomePage extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.account_circle),
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+            ),
+          ],
           bottom: TabBar(
             indicatorColor: Colors.black,
             labelColor: Colors.black,

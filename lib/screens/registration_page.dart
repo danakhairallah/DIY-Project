@@ -35,26 +35,20 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF5F8DFF), Color(0xFFA0C4FF)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: const BoxDecoration(color: Color(0xFFB9D4F8)),
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
               crossAxisAlignment:
-              isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                  isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 Text(
                   loc.translate("register"),
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color(0xFF0283D1),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -62,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   loc.translate("create_account"),
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.white70,
+                    color: Color(0xFF0283D1),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -92,9 +86,11 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          validator: (value) => value!.isEmpty
-                              ? loc.translate("required_field")
-                              : null,
+                          validator:
+                              (value) =>
+                                  value!.isEmpty
+                                      ? loc.translate("required_field")
+                                      : null,
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
@@ -111,7 +107,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               return loc.translate("required_field");
                             }
                             final emailRegex = RegExp(
-                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                              r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                            );
                             if (!emailRegex.hasMatch(value)) {
                               return loc.translate("invalid_email");
                             }
@@ -134,7 +131,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               return loc.translate("required_field");
                             }
                             final passwordRegex = RegExp(
-                                r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+                              r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
+                            );
                             if (!passwordRegex.hasMatch(value)) {
                               return loc.translate("weak_password");
                             }
@@ -151,20 +149,27 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          items: ['Male', 'Female', 'Other']
-                              .map((gender) => DropdownMenuItem<String>(
-                            value: gender,
-                            child: Text(loc.translate(gender.toLowerCase())),
-                          ))
-                              .toList(),
+                          items:
+                              ['Male', 'Female', 'Other']
+                                  .map(
+                                    (gender) => DropdownMenuItem<String>(
+                                      value: gender,
+                                      child: Text(
+                                        loc.translate(gender.toLowerCase()),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
                           onChanged: (value) {
                             setState(() {
                               _selectedGender = value;
                             });
                           },
-                          validator: (value) => value == null
-                              ? loc.translate("required_field")
-                              : null,
+                          validator:
+                              (value) =>
+                                  value == null
+                                      ? loc.translate("required_field")
+                                      : null,
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
@@ -194,7 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: ElevatedButton(
                             onPressed: _submit,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF5F8DFF),
+                              backgroundColor: const Color(0xFF07A1FF),
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -203,9 +208,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: Text(
                               loc.translate("register"),
                               style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -215,9 +221,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             Text(
                               loc.translate('Already have an account?'),
-                              style:TextStyle(
-                                  fontSize: 14, color: Colors.black54
-                              ) ,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black54,
+                              ),
                             ),
                             TextButton(
                               onPressed: () {
@@ -226,9 +233,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: Text(
                                 loc.translate("login"),
                                 style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Color(0xFF3579F6),
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 14,
+                                  color: Color(0xFF07A1FF),
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
