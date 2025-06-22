@@ -42,3 +42,6 @@ dependencies:
   provider: ^6.1.5
   flutter_localization: ^0.3.2
   http: ^1.4.0
+  image_picker: ^1.1.2
+  flutter_secure_storage: ^9.2.4
+  table_calendar: ^3.0.9
