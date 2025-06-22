@@ -32,6 +32,14 @@ class _RegisterPageState extends State<RegisterPage> {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,

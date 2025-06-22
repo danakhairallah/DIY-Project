@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 import 'home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,9 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final secureStorage=FlutterSecureStorage();
-  bool rememberMe=false;
-
+  final secureStorage = FlutterSecureStorage();
+  bool rememberMe = false;
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
@@ -25,12 +25,14 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
   }
-  void initstate(){
+
+  void initstate() {
     super.initState();
     loadRememberMe();
   }
-  void loadRememberMe()async{
-    String? value= await secureStorage.read(key: 'remember_me');
+
+  void loadRememberMe() async {
+    String? value = await secureStorage.read(key: 'remember_me');
     setState(() {
       if (value == 'true') {
         rememberMe = true;
@@ -45,20 +47,26 @@ class _LoginPageState extends State<LoginPage> {
     final loc = AppLocalizations.of(context)!;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final size = MediaQuery.of(context).size;
-    
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // يرجع للـ Home
+          },
+        ),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(color: Color(0xFFB9D4F8)
-        ),
+        decoration: const BoxDecoration(color: Color(0xFFB9D4F8)),
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
               crossAxisAlignment:
-              isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                  isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 Text(
                   loc.translate("login"),
@@ -103,9 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          validator: (value) => value!.isEmpty
-                              ? loc.translate("required_field")
-                              : null,
+                          validator:
+                              (value) =>
+                                  value!.isEmpty
+                                      ? loc.translate("required_field")
+                                      : null,
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
@@ -118,9 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          validator: (value) => value!.length < 6
-                              ? loc.translate("password_too_short")
-                              : null,
+                          validator:
+                              (value) =>
+                                  value!.length < 6
+                                      ? loc.translate("password_too_short")
+                                      : null,
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -137,9 +149,10 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               loc.translate("login"),
                               style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -150,7 +163,9 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               loc.translate("no_account"),
                               style: const TextStyle(
-                                  fontSize: 14, color: Colors.black54),
+                                fontSize: 14,
+                                color: Colors.black54,
+                              ),
                             ),
                             TextButton(
                               onPressed: () {
@@ -171,23 +186,27 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Checkbox(
-                                value: rememberMe, 
-                                activeColor: Color(0xFF07A1FF),
-                                onChanged: (value)async{
-                               setState(() {
-                                 rememberMe = value!;
-                               });
-                               await secureStorage.write(key: 'remember_me', value: rememberMe.toString(),);
-                              
-                            }
+                              value: rememberMe,
+                              activeColor: Color(0xFF07A1FF),
+                              onChanged: (value) async {
+                                setState(() {
+                                  rememberMe = value!;
+                                });
+                                await secureStorage.write(
+                                  key: 'remember_me',
+                                  value: rememberMe.toString(),
+                                );
+                              },
                             ),
                             Text(
                               loc.translate(" rememberMe ?"),
-                              style: TextStyle(fontSize: 14, color: Color(0xFF07A1FF),fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF07A1FF),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-
                           ],
-                          
                         ),
                       ],
                     ),
