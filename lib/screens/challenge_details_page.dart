@@ -48,51 +48,84 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
     await prefs.setStringList('completedDays_${widget.challengeId}', stringDates);
   }
 
-  void _showCalendarDialog(AppLocalizations loc) {
+  void _showCustomTrackerDialog(AppLocalizations loc) {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text(loc.translate("track_progress")),
-          content: SizedBox(
-            height: 350,
-            width: double.maxFinite,
-            child: TableCalendar(
-              firstDay: DateTime.utc(2024, 1, 1),
-              lastDay: DateTime.utc(2030, 12, 31),
-              focusedDay: DateTime.now(),
-              selectedDayPredicate: (day) {
-                return _completedDays.any((d) => isSameDay(d, day));
-              },
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  final exists = _completedDays.any((d) => isSameDay(d, selectedDay));
-                  if (exists) {
-                    _completedDays.removeWhere((d) => isSameDay(d, selectedDay));
-                  } else {
-                    _completedDays.add(selectedDay);
-                  }
-                });
-                _saveCompletedDays();
-              },
-              calendarStyle: CalendarStyle(
-                todayDecoration: BoxDecoration(
-                  color: Colors.orangeAccent,
-                  shape: BoxShape.circle,
-                ),
-                selectedDecoration: BoxDecoration(
-                  color: Colors.green,
-                  shape: BoxShape.circle,
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: Text(loc.translate("track_progress")),
+              content: SizedBox(
+                width: double.maxFinite,
+                height: 350,
+                child: GridView.builder(
+                  itemCount: 30,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemBuilder: (context, index) {
+                    final dayNumber = index + 1;
+                    final date = DateTime(2024, 1, dayNumber);
+                    final isCompleted = _completedDays.any((d) => d.day == dayNumber);
+
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          final exists = _completedDays.any((d) => d.day == dayNumber);
+                          if (exists) {
+                            _completedDays.removeWhere((d) => d.day == dayNumber);
+                          } else {
+                            _completedDays.add(date);
+                          }
+                          _saveCompletedDays();
+                          setStateDialog(() {});
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isCompleted ? Colors.green : Colors.blue[300],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          isCompleted ? "✔" : "$dayNumber",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(loc.translate("close")),
-            ),
-          ],
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          _completedDays.clear();
+                          _saveCompletedDays();
+                          setStateDialog(() {});
+                        });
+                      },
+                      child: Text(loc.translate("reset")),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(loc.translate("close")),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -203,8 +236,8 @@ class _ChallengeDetailsState extends State<ChallengeDetails> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showCalendarDialog(loc),
-        child: const Icon(Icons.calendar_today),
+        onPressed: () => _showCustomTrackerDialog(loc),
+        child: const Icon(Icons.check_box),
       ),
     );
   }
