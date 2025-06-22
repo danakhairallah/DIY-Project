@@ -1,4 +1,4 @@
-# DIY Challenge App
+-# DIY Challenge App
 
 A mobile application built with Flutter as part of a collaborative team project.  
 The app provides a platform for showcasing and completing DIY (Do It Yourself) challenges,
