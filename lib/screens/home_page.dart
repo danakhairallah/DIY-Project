@@ -2,7 +2,6 @@ import 'package:diy_challenge_app/screens/language_page.dart';
 import 'package:diy_challenge_app/screens/my_challenges_page.dart';
 import 'package:diy_challenge_app/screens/suggested_page.dart';
 import 'package:diy_challenge_app/screens/topRated_screen.dart';
-import 'package:diy_challenge_app/screens/upload_result_page.dart';
 import 'package:diy_challenge_app/widget/challenges.dart';
 import 'package:diy_challenge_app/utils/dark_theme_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,10 @@ import 'package:provider/provider.dart';
 import '../utils/app_localizations.dart';
 import 'categories_tab.dart';
 import '../utils/responsive_helper.dart';
+
+// Import Firebase Auth and flutter_secure_storage
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -28,6 +31,9 @@ class HomePage extends StatelessWidget {
       color: Colors.white,
       fontSize: isDesktop ? 28 : isTablet ? 26 : 24,
     );
+
+    // Instance of secure storage
+    final secureStorage = const FlutterSecureStorage();
 
     return DefaultTabController(
       length: 4,
@@ -86,13 +92,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(bottom: 15),
-                    //   child: Text(
-                    //     loc.translate("do_it_yourself"),
-                    //     style: headerTextStyle.copyWith(fontSize: 27, fontWeight: FontWeight.bold),
-                    //   ),
-                    // ),
+                    
                   ],
                 ),
               ),
@@ -153,9 +153,29 @@ class HomePage extends StatelessWidget {
                 leading: const Icon(Icons.share),
                 title: Text(loc.translate("share"), style: drawerTextStyle),
               ),
+
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: Text(loc.translate("logout"), style: drawerTextStyle),
+                onTap: () async {
+
+                  Navigator.pop(context);
+
+
+                  await FirebaseAuth.instance.signOut();
+
+
+                  await secureStorage.delete(key: 'remember_me');
+                  await secureStorage.delete(key: 'email');
+                  await secureStorage.delete(key: 'password');
+
+
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                        (route) => false,
+                  );
+                },
               ),
             ],
           ),
