@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 import 'home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -17,12 +18,24 @@ class _RegisterPageState extends State<RegisterPage> {
   final _ageController = TextEditingController();
   String? _selectedGender;
 
-  void _submit() {
+  Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
-      );
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomePage()),
+        );
+      } on FirebaseAuthException catch (e) {
+        String msg = e.message ?? 'حدث خطأ أثناء إنشاء الحساب';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(msg)),
+        );
+      }
     }
   }
 
@@ -49,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
               crossAxisAlignment:
-                  isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 Text(
                   loc.translate("register"),
@@ -96,9 +109,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           validator:
                               (value) =>
-                                  value!.isEmpty
-                                      ? loc.translate("required_field")
-                                      : null,
+                          value!.isEmpty
+                              ? loc.translate("required_field")
+                              : null,
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
@@ -158,16 +171,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           items:
-                              ['Male', 'Female', 'Other']
-                                  .map(
-                                    (gender) => DropdownMenuItem<String>(
-                                      value: gender,
-                                      child: Text(
-                                        loc.translate(gender.toLowerCase()),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
+                          ['Male', 'Female', 'Other']
+                              .map(
+                                (gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(
+                                loc.translate(gender.toLowerCase()),
+                              ),
+                            ),
+                          )
+                              .toList(),
                           onChanged: (value) {
                             setState(() {
                               _selectedGender = value;
@@ -175,9 +188,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                           validator:
                               (value) =>
-                                  value == null
-                                      ? loc.translate("required_field")
-                                      : null,
+                          value == null
+                              ? loc.translate("required_field")
+                              : null,
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
@@ -229,7 +242,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             Text(
                               loc.translate('Already have an account?'),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.black54,
                               ),
