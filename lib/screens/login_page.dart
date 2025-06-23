@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/app_localizations.dart';
 import 'home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,32 +15,67 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final secureStorage = FlutterSecureStorage();
+  final secureStorage = const FlutterSecureStorage();
+
   bool rememberMe = false;
 
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
-      );
-    }
-  }
-
-  void initstate() {
+  @override
+  void initState() {
     super.initState();
     loadRememberMe();
   }
 
   void loadRememberMe() async {
-    String? value = await secureStorage.read(key: 'remember_me');
-    setState(() {
-      if (value == 'true') {
+    String? remember = await secureStorage.read(key: 'remember_me');
+    if (remember == 'true') {
+      String? savedEmail = await secureStorage.read(key: 'email');
+      String? savedPassword = await secureStorage.read(key: 'password');
+      setState(() {
         rememberMe = true;
-      } else {
-        rememberMe = false;
+        _emailController.text = savedEmail ?? '';
+        _passwordController.text = savedPassword ?? '';
+      });
+    }
+  }
+
+  Future<void> _submit() async {
+    final loc = AppLocalizations.of(context)!;
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        if (rememberMe) {
+          await secureStorage.write(key: 'remember_me', value: 'true');
+          await secureStorage.write(key: 'email', value: _emailController.text.trim());
+          await secureStorage.write(key: 'password', value: _passwordController.text.trim());
+        } else {
+          await secureStorage.delete(key: 'remember_me');
+          await secureStorage.delete(key: 'email');
+          await secureStorage.delete(key: 'password');
+        }
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomePage()),
+        );
+      } on FirebaseAuthException catch (e) {
+        String msg = '';
+        if (e.code == 'user-not-found') {
+          msg = loc.translate('error_user_not_found');
+        } else if (e.code == 'wrong-password') {
+          msg = loc.translate('error_wrong_password');
+        } else {
+          msg = e.message ?? loc.translate('error_generic_login');
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(msg)),
+        );
       }
-    });
+    }
   }
 
   @override
@@ -53,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // يرجع للـ Home
+            Navigator.pop(context);
           },
         ),
       ),
@@ -66,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
               crossAxisAlignment:
-                  isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              isRtl ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 Text(
                   loc.translate("login"),
@@ -113,9 +149,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           validator:
                               (value) =>
-                                  value!.isEmpty
-                                      ? loc.translate("required_field")
-                                      : null,
+                          value!.isEmpty
+                              ? loc.translate("required_field")
+                              : null,
                         ),
                         const SizedBox(height: 15),
                         TextFormField(
@@ -130,11 +166,34 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           validator:
                               (value) =>
-                                  value!.length < 6
-                                      ? loc.translate("password_too_short")
-                                      : null,
+                          value!.length < 6
+                              ? loc.translate("password_too_short")
+                              : null,
                         ),
                         const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: rememberMe,
+                              activeColor: const Color(0xFF07A1FF),
+                              onChanged: (value) async {
+                                setState(() {
+                                  rememberMe = value!;
+                                });
+                              },
+                            ),
+                            Text(
+                              loc.translate(" rememberMe ?"),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF07A1FF),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -178,32 +237,6 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Color(0xFF07A1FF),
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Checkbox(
-                              value: rememberMe,
-                              activeColor: Color(0xFF07A1FF),
-                              onChanged: (value) async {
-                                setState(() {
-                                  rememberMe = value!;
-                                });
-                                await secureStorage.write(
-                                  key: 'remember_me',
-                                  value: rememberMe.toString(),
-                                );
-                              },
-                            ),
-                            Text(
-                              loc.translate(" rememberMe ?"),
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFF07A1FF),
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
