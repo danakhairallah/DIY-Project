@@ -30,6 +30,9 @@
   "create_account": "قم بإنشاء حساب لك",
   "rememberMe": "تذكرني",
  "Already have an account?":"هل تمتلك حساب بالفعل؟",
+  "error_user_not_found": "لا يوجد مستخدم بهذا البريد الإلكتروني.",
+  "error_wrong_password": "كلمة المرور غير صحيحة.",
+  "error_generic_login": "حدث خطأ أثناء تسجيل الدخول.",
   
   "all_challenges": "جميع التحديات",
   "categories": "التصنيفات",
