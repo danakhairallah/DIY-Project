@@ -101,6 +101,12 @@
   "category_spiritual": "Spiritual",
 
   "choose_language_subtitle": "Select your preferred language for the app",
+  
+  "error_user_not_found": "No user found for that email.",
+  "error_wrong_password": "Incorrect password.",
+  "error_generic_login": "An error occurred during login.",
+
+
 
 
 
