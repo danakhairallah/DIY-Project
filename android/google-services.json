@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "948867608898",
+    "project_id": "fir-auth-ac6db",
+    "storage_bucket": "fir-auth-ac6db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948867608898:android:7de92bb3451ce8103e18db",
+        "android_client_info": {
+          "package_name": "com.example.diy_challenge_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5C5aYRQCiR2qPImU9ucrM90ZQR3T2Mi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
